@@ -1,0 +1,8 @@
+*.meta
+*.db
+*.apk
+Library
+ProjectSettings
+*.csproj
+*.sln
+*.userprefs
