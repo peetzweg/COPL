@@ -8,6 +8,7 @@ public class RandomMusic : MonoBehaviour {
 	void Start () {
 		int trackNo = Random.Range(0, this.soundtrack.Length-1);
 		this.audio.clip = this.soundtrack[trackNo];
+		this.guiText.text = this.soundtrack[trackNo].name;
 		this.audio.Play();
 	}
 	
