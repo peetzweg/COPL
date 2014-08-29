@@ -6,11 +6,11 @@ public class SpriteButton : MonoBehaviour {
 	private BoxCollider2D bc2d;
 	private bool pressed = false;
 	public Sprite unpressedSprite, pressedSprite;
+	public int sceneNumber=1;
 
 	void Start () {
 		this.sp = this.renderer as SpriteRenderer;
 		this.sp.sprite = this.unpressedSprite;
-
 
 		// adding a Collider, otherwise the mouse/touch hit's won't be detected
 		this.gameObject.AddComponent<BoxCollider2D>();
@@ -44,7 +44,7 @@ public class SpriteButton : MonoBehaviour {
 
 		else if(!this.pressed && this.sp.sprite != this.unpressedSprite){
 			this.sp.sprite = this.unpressedSprite;
-			Application.LoadLevel(1);
+			Application.LoadLevel(this.sceneNumber);
 		}
 	}
 
