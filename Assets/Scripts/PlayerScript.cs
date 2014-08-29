@@ -28,6 +28,7 @@ public class PlayerScript : MonoBehaviour
 
 				// lose if player left through the bottom of the screen
 				if (this.transform.position.y < -7) {
+						Distance.saveDistance();
 						Application.LoadLevel (2);
 				}
 		}
@@ -39,6 +40,7 @@ public class PlayerScript : MonoBehaviour
 
 		}
 
+		// also allow jumping when leaving the roof with a part of the board
 		void OnTriggerexit2D (Collider2D other)
 		{
 				checkForJump ();

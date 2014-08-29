@@ -22,7 +22,6 @@ public class ParallaxScrolling : MonoBehaviour {
 		// generate a stream of ground texture
 		for(int i = 0; i < 100; i++){
 			SpriteRenderer sp = prefabObject.renderer as SpriteRenderer;
-			float screenWidth = sp.sprite.texture.width/this.prefabScale;
 			float xOffset;
 			if(this.random){
 				xOffset = Random.Range(this.min,this.max);

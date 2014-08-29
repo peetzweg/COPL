@@ -4,6 +4,8 @@ using System.Collections;
 public class Distance : MonoBehaviour {
 
 	private GameObject player;
+
+	static int distance;
 	// Use this for initialization
 	void Start () {
 		this.player = GameObject.Find("/Tottens");
@@ -11,6 +13,12 @@ public class Distance : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		this.guiText.text = Mathf.FloorToInt(this.player.transform.position.x/2) +"m";
+		distance = Mathf.FloorToInt(player.transform.position.x/2);
+		this.guiText.text = distance +"m";
 	}
+
+	public static void saveDistance(){
+		PlayerPrefs.SetInt("LastDistance", distance);
+	}
+
 }
