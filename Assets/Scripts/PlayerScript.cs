@@ -28,25 +28,42 @@ public class PlayerScript : MonoBehaviour
 
 				// lose if player left through the bottom of the screen
 				if (this.transform.position.y < -7) {
-						Distance.saveDistance();
-						Application.LoadLevel (2);
+					endRound();
 				}
 		}
 
 		// Only allow jumping if roof is trigger
 		void OnTriggerStay2D (Collider2D other)
 		{
-				checkForJump ();
+			if(!legitRotation()){
+				endRound();
+			}
+			checkForJump ();
 
 		}
 
 		// also allow jumping when leaving the roof with a part of the board
-		void OnTriggerexit2D (Collider2D other)
+		void OnTriggerExit2D (Collider2D other)
 		{
 				checkForJump ();
 
 		}
 
+		private void endRound(){
+			Distance.saveDistance();
+			Application.LoadLevel (2);
+		}
+	
+
+		private bool legitRotation(){
+			int zRotation = Mathf.CeilToInt(this.transform.rotation.eulerAngles.z);
+			if(zRotation>=90 && zRotation<=270){
+				return false;
+			}
+			return true;
+		}
+	
+	// handles jumping
 		private void checkForJump ()
 		{
 
@@ -69,8 +86,5 @@ public class PlayerScript : MonoBehaviour
 					this.animator.SetBool ("Jumping", false);
 					this.rigidbody2D.AddForce (new Vector2 (0, 150));
 			}
-		
-				
-
 		}
 }
