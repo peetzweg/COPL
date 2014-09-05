@@ -15,7 +15,7 @@ public class MusicManager : MonoBehaviour {
 		DontDestroyOnLoad(this.gameObject);
 	}
 
-	void Start () {
+	void Update () {
 		if(!this.audio.isPlaying){
 			int trackNo = Random.Range(0, this.soundtrack.Length-1);
 			this.audio.clip = this.soundtrack[trackNo];
