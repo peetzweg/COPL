@@ -66,14 +66,14 @@ public class PlayerScript : MonoBehaviour
 	// handles jumping
 	private void checkForJump()
 	{
-
+		
 		// debug keyboard input
 		if (Input.GetKeyDown("space") && !(this.animator.GetBool("Jumping"))) {
 			this.animator.SetBool("Jumping", true);
 		} else if (Input.GetKeyUp("space") && this.animator.GetBool("Jumping")) {
 			this.animator.SetBool("Jumping", false);
 			this.rigidbody2D.AddForce(new Vector2(0, 150));
-		
+			
 		}
 
 		// only if there are any touches
@@ -91,7 +91,22 @@ public class PlayerScript : MonoBehaviour
 				}
 
 			}
-		} else if (this.animator.GetBool("Jumping")) {
+		}
+		else if (Input.GetMouseButton(0)) {
+			// if touch began change 'Jumping' to true, to begin jumping animation if in correct area
+			if (!(this.animator.GetBool("Jumping"))) {
+				bool inCorrectArea = false;
+
+					if (Input.mousePosition.y < Screen.height/2) {
+						inCorrectArea = true;
+					}
+				if (inCorrectArea) {
+					this.animator.SetBool("Jumping", true);
+				}
+				
+			}
+		}
+		else if (this.animator.GetBool("Jumping")) {
 			this.animator.SetBool("Jumping", false);
 			this.rigidbody2D.AddForce(new Vector2(0, 150));
 		}
